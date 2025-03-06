@@ -1,0 +1,12 @@
+-- check for duplicates
+-- check for duplicates by examining country and year
+
+-- the course did it this way
+SELECT country, year, CONCAT(country,year)
+  FROM World_Life_Expectancy;
+
+-- this was my strategy for finding duplicates
+SELECT country, COUNT(DISTINCT year) AS non_dup, COUNT(year) AS dup
+  FROM World_Life_Expectancy
+ GROUP BY country
+HAVING non_dup <> dup;
