@@ -25,4 +25,39 @@ UPDATE World_Life_Expectancy t1
     ON t1.country = t2.country
    SET t1.status = 'Developed'
  WHERE t1.status = '' AND t2.status <> '' AND t2.status = 'Developed';
+
+
+
+ -- Life Expectancy Column
  
+ -- only Afghanistan and Albania each have one missing life_expectancy value
+ -- we can take average of year before and year after
+
+ SELECT country, year, life_expectancy
+ FROM world_life_expectancy
+ WHERE life_expectancy = '';
+ 
+ SELECT country, year, life_expectancy
+ FROM world_life_expectancy
+ WHERE country = 'Afghanistan' AND year IN (2017, 2018, 2019);
+
+-- located columns with missing life expectancy and took average of year before and after that specific row with missing data
+SELECT t1.country, t1.year, t1.life_expectancy,
+	   t2.country, t2.year, t2.life_expectancy,
+       t3.country, t3.year, t3.life_expectancy,
+       ROUND((t2.life_expectancy + t3.life_expectancy) / 2,1)
+  FROM world_life_expectancy t1
+  JOIN world_life_expectancy t2
+    ON t1.country = t2.country AND t1.year = t2.year - 1
+  JOIN world_life_expectancy t3
+    ON t1.country = t3.country AND t1.year = t3.year + 1
+ WHERE t1.life_expectancy = ''; 
+ 
+ -- updated the missing data with the newly populated value
+ UPDATE World_Life_Expectancy t1
+  JOIN world_life_expectancy t2
+    ON t1.country = t2.country AND t1.year = t2.year - 1
+  JOIN world_life_expectancy t3
+    ON t1.country = t3.country AND t1.year = t3.year + 1
+   SET t1.life_expectancy = ROUND((t2.life_expectancy + t3.life_expectancy) / 2,1)
+ WHERE t1.life_expectancy = '';
