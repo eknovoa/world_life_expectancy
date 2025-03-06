@@ -1,0 +1,28 @@
+-- Missing Data
+
+
+SELECT *
+FROM World_Life_Expectancy
+WHERE status = '';
+
+-- status options are: Developing or Developed
+SELECT DISTINCT(status)
+FROM World_Life_Expectancy
+WHERE status <> '';
+
+SELECT DISTINCT(country)
+FROM World_Life_Expectancy
+WHERE status = 'Developing';
+
+UPDATE World_Life_Expectancy t1
+  JOIN World_Life_Expectancy t2
+    ON t1.country = t2.country
+   SET t1.status = 'Developing'
+ WHERE t1.status = '' AND t2.status <> '' AND t2.status = 'Developing';
+ 
+ UPDATE World_Life_Expectancy t1
+  JOIN World_Life_Expectancy t2
+    ON t1.country = t2.country
+   SET t1.status = 'Developed'
+ WHERE t1.status = '' AND t2.status <> '' AND t2.status = 'Developed';
+ 
