@@ -13,3 +13,6 @@ Initiate Project
    <img width="260" alt="Screenshot 2025-03-05 at 6 46 05 PM" src="https://github.com/user-attachments/assets/da9b2c36-82a2-4a71-84f1-ef6b71e3a792" />
 5. Be sure to click "Refresh All" to refresh the database and table with the new changes.
    <img width="218" alt="Screenshot 2025-03-05 at 6 47 09 PM" src="https://github.com/user-attachments/assets/d2cda8a4-00fc-47e0-99c3-cb323bc34c52" />
+
+Cleaning Steps:
+1. I started by renaming the table from worldlifexpectancy to World_Life_Expectancy, and I also renamed the majority of the table's columns to reflect lowercase and snake_case naming convention. You case see the query for this inside the file, "rename-table-columns".
