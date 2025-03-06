@@ -19,3 +19,4 @@ Cleaning Steps:
 2. I checked for duplicate rows based on country and year columns. I did this sql code differently than the project did in the course. Please see file, "remove-duplicates". I identified that these three countries had duplicate rows: Ireland, Senegal, and Zimbabwe.
    <img width="183" alt="Screenshot 2025-03-05 at 7 00 02 PM" src="https://github.com/user-attachments/assets/7ad5b02a-0ab9-4100-8fe4-2fe98410a855" />
 3. Before removing the duplicates that I identified based on the row_id per country. I created a backup table so that we would have an original table that remains untouched and the second table I can delete duplicate rows safely.
+4. Dealt with missing data in the life_expectancy column, only a few rows in certain countries needed to be categorized as "developing" or "developed". The SQL statements can be found in the following file: missing-data
