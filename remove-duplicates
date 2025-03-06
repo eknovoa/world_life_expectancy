@@ -10,3 +10,71 @@ SELECT country, COUNT(DISTINCT year) AS non_dup, COUNT(year) AS dup
   FROM World_Life_Expectancy
  GROUP BY country
 HAVING non_dup <> dup;
+
+
+-- All rows for the 3 countries where there are some duplicates
+SELECT *
+  FROM World_Life_Expectancy
+ WHERE country IN ('Ireland', 'Senegal', 'Zimbabwe');
+
+-- Start with Ireland
+SELECT year, COUNT(year)
+  FROM World_Life_Expectancy
+ WHERE country = 'Ireland'
+ GROUP BY year
+HAVING COUNT(year) > 1;
+
+SELECT row_id
+  FROM World_Life_Expectancy
+ WHERE country = 'Ireland' AND year = 2022;
+
+-- Remove duplicate row, 1252
+DELETE FROM World_Life_Expectancy
+ WHERE row_id = 1252;
+
+-- Now do the same thing for Senegal
+SELECT year, COUNT(year)
+  FROM World_Life_Expectancy
+ WHERE country = 'Senegal'
+ GROUP BY year
+HAVING COUNT(year) > 1;
+
+SELECT row_id
+  FROM World_Life_Expectancy
+ WHERE country = 'Senegal' AND year = 2009;
+
+-- Remove duplicate row, 2265
+DELETE FROM World_Life_Expectancy
+ WHERE row_id = 2265;
+
+
+-- Now do the same thing for Zimbabwe
+SELECT year, COUNT(year)
+  FROM World_Life_Expectancy
+ WHERE country = 'Zimbabwe'
+ GROUP BY year
+HAVING COUNT(year) > 1;
+
+SELECT row_id
+  FROM World_Life_Expectancy
+ WHERE country = 'Zimbabwe' AND year = 2019;
+
+-- Remove duplicate row, 2929
+DELETE FROM World_Life_Expectancy
+ WHERE row_id = 2929;
+
+
+
+
+-- Other way:
+DELETE FROM World_Life_Expectancy
+WHERE row_id IN (
+      SELECT row_id
+  FROM (
+      SELECT row_id, 
+             CONCAT(Country, Year),
+             ROW_NUMBER() OVER(PARTITION BY CONCAT(Country, Year) ORDER BY CONCAT(Country, Year)) as Row_Num
+        FROM World_Life_Expectancy
+   ) AS Row_table
+  WHERE Row_num > 1
+);
