@@ -18,4 +18,4 @@ Cleaning Steps:
 1. I started by renaming the table from worldlifexpectancy to World_Life_Expectancy, and I also renamed the majority of the table's columns to reflect lowercase and snake_case naming convention. You case see the query for this inside the file, "rename-table-columns".
 2. I checked for duplicate rows based on country and year columns. I did this sql code differently than the project did in the course. Please see file, "remove-duplicates". I identified that these three countries had duplicate rows: Ireland, Senegal, and Zimbabwe.
    <img width="183" alt="Screenshot 2025-03-05 at 7 00 02 PM" src="https://github.com/user-attachments/assets/7ad5b02a-0ab9-4100-8fe4-2fe98410a855" />
-
+3. Before removing the duplicates that I identified based on the row_id per country. I created a backup table so that we would have an original table that remains untouched and the second table I can delete duplicate rows safely.
