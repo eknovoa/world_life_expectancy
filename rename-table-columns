@@ -1,0 +1,63 @@
+-- After examining the first 10 rows of the table, I decided to rename the table in snake_case as well as alter all most of the column names to be in lowercase and words separated with underscores.
+
+USE world_life_expectancy;
+
+RENAME TABLE worldlifexpectancy TO World_Life_Expectancy;
+
+SELECT *
+  FROM World_Life_expectancy
+ LIMIT 10;
+ 
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN Country TO country;
+ 
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN Year TO year;
+ 
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN Status TO status;
+ 
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN Lifeexpectancy TO life_expectancy;
+ 
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN AdultMortality TO adult_mortality;
+ 
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN infantdeaths TO infant_deaths;
+ 
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN percentageexpenditure TO percentage_expenditure;
+ 
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN Measles TO measles;
+ 
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN BMI TO bmi;
+ 
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN `under-fivedeaths` TO under_five_deaths;
+
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN Polio TO polio;
+
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN Diphtheria TO diphtheria;
+
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN HIVAIDS TO hiv_aids;
+
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN GDP TO gdp;
+
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN `thinness1-19years` TO thinness_1_to_19_years;
+
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN `thinness5-9years` TO thinness_5_to_9_years;
+
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN Schooling TO schooling;
+
+ALTER TABLE worldlifexpectancy
+RENAME COLUMN Row_ID TO row_id;
